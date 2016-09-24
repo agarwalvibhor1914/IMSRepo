@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.ims.database.mybatis.ImsMapper">
+
+<resultMap id ="userDetails" type = "com.ims.model.UserDetails">
+   <result property = "id" column = "ID"/>
+   <result property = "name" column = "NAME"/>
+   <result property = "telephone" column = "TELEPHONE"/>
+   <result property = "email" column = "EMAIL"/>
+</resultMap>
+
+<select id = "getuserDetails" resultMap = "userDetails">
+   SELECT * FROM userDetails
+   where id=#{id}; 
+</select>
+
+</mapper>
