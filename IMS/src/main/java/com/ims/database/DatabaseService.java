@@ -23,6 +23,8 @@ import com.ims.database.mybatis.ImsMapper;
 @WebServlet("/databaseService")
 public class DatabaseService extends HttpServlet {
 	
+	
+	
 	 public void doGet(HttpServletRequest request, HttpServletResponse response)
 	            throws IOException {
 		try{
