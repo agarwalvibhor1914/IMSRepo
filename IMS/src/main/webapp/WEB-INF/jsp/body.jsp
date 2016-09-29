@@ -1,10 +1,14 @@
 <body>
-	<div>
+	<div id="header"></div>
+        <div id="content"><div>
 		<div ng-controller="MyController">
-			<button ng-click="getDataFromServer()">Fetch data from Server</button>
+			<button ng-click="getDataFromServer()" >Fetch data from Server</button>
 			<p>First Name : {{person.name}}</p>
-			<p>Last Name : {{person.telephone}}</p>
-		</div>
-	</div>
+			<p>Telephone Number : {{person.telephone}}</p>
+			<p>Email : {{person.email}}</p>
+		 </div>
+		 </div>
+    </div>
+    <div id="footer"></div>
 	
 </body>

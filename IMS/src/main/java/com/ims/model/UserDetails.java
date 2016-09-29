@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.ims.model;
 
@@ -13,7 +13,7 @@ public class UserDetails {
 	String name;
 	String email;
 	String telephone;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -38,5 +38,4 @@ public class UserDetails {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	
 }
