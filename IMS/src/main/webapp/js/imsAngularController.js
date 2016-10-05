@@ -1,19 +1,22 @@
 
-var app = angular.module('myApp', [ 'ngRoute' ]);
+var app = angular.module('myApp', ['ngRoute']);
 
 app.config(function($routeProvider) {
 	$routeProvider
 	
 	.when("/", {
-		templateUrl : "homePage.html"
+		templateUrl : "parts/login.html",
+		controller  : "loginController"
 	})
 	
-	.when("/HomePage", {
-		templateUrl : "homePage.html"
+	.when("/home", {
+		templateUrl : "parts/home.html",
+		controller  : "homeController"
 	})
 
 });
-app.controller('MyController', function($scope, $http) {
+
+app.controller('loginController', function($scope, $http) {
 	$scope.getDataFromServer = function($location) {
 		$scope.id = {};
 		$http({
