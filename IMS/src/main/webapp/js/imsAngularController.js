@@ -16,8 +16,8 @@ app.config(function($routeProvider) {
 
 });
 
-app.controller('loginController', function($scope, $http) {
-	$scope.getDataFromServer = function($location) {
+app.controller('loginController', function($scope, $http, $location) {
+	$scope.getDataFromServer = function() {
 		$scope.id = {};
 		$http({
 			method : 'POST',
@@ -29,7 +29,7 @@ app.controller('loginController', function($scope, $http) {
 		}).success(function(data, status, headers, config) {
 			$scope.person = data;
 			$scope.error=null;
-			//$location.path('/HomePage');
+			$location.path('/home');			
 		}).error(function(data, status, headers, config) {
 			$scope.person = null;
 			$scope.error = data;
@@ -37,3 +37,10 @@ app.controller('loginController', function($scope, $http) {
 
 	};
 });
+
+
+
+app.controller('homeController', function($scope) {
+	$scope=data;
+});
+
