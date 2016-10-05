@@ -1,19 +1,36 @@
-/**
- * 
- */
 
-var app = angular.module('myApp', []).controller('MyController',
-	function($scope, $http) {
-		$scope.getDataFromServer = function() {
-			$http({
-				method : 'GET',
-				url : 'databaseService'
-			}).success(function(data, status, headers, config) {
-				$scope.person = data;
-			}).error(function(data, status, headers, config) {
-				// called asynchronously if an error occurs
-				// or server returns response with an error status.
-			});
+var app = angular.module('myApp', [ 'ngRoute' ]);
+
+app.config(function($routeProvider) {
+	$routeProvider
 	
-		};
-	});
+	.when("/", {
+		templateUrl : "homePage.html"
+	})
+	
+	.when("/HomePage", {
+		templateUrl : "homePage.html"
+	})
+
+});
+app.controller('MyController', function($scope, $http) {
+	$scope.getDataFromServer = function($location) {
+		$scope.id = {};
+		$http({
+			method : 'POST',
+			url : 'rest/userService/varify',
+			headers : {
+				'Content-Type' : 'application/json'
+			},
+			data : $scope.userDetails
+		}).success(function(data, status, headers, config) {
+			$scope.person = data;
+			$scope.error=null;
+			//$location.path('/HomePage');
+		}).error(function(data, status, headers, config) {
+			$scope.person = null;
+			$scope.error = data;
+		});
+
+	};
+});

@@ -3,16 +3,28 @@
  */
 package com.ims.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * @author Anshika
  *
  */
+@XmlRootElement(name="UserDetails")
 public class UserDetails {
 
 	int id;
 	String name;
+	String password;
 	String email;
 	String telephone;
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 
 	public int getId() {
 		return id;

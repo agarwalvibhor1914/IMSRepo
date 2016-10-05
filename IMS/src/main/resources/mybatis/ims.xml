@@ -7,11 +7,12 @@
    <result property = "name" column = "NAME"/>
    <result property = "telephone" column = "TELEPHONE"/>
    <result property = "email" column = "EMAIL"/>
+    <result property = "password" column = "PASSWORD"/>
 </resultMap>
 
 <select id = "getuserDetails" resultMap = "userDetails">
    SELECT * FROM userDetails
-   where id=#{id}; 
+   where id=#{id} and password=#{password}; 
 </select>
 
 </mapper>

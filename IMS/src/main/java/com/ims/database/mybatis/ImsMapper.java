@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Param;
 import com.ims.model.UserDetails;
 
 public interface ImsMapper {
-	List<UserDetails> getuserDetails(@Param("id") int id);
+	List<UserDetails> getuserDetails(@Param("id") int id,@Param("password") String password);
 }
