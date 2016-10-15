@@ -8,7 +8,7 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
-	<servlet>
+	<!-- <servlet>
 		<servlet-name>jersey-serlvet</servlet-name>
 		<servlet-class>
 	                    com.sun.jersey.spi.container.servlet.ServletContainer
@@ -23,6 +23,6 @@
 	<servlet-mapping>
 		<servlet-name>jersey-serlvet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 	
 </web-app>

@@ -3,7 +3,6 @@
  */
 package com.ims.rest;
 
-import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
@@ -29,6 +28,7 @@ import com.ims.model.UserDetails;
 @Path("/userService")
 public class UserService {
 
+
 	@POST
 	@Path("/varify")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -40,6 +40,7 @@ public class UserService {
 			Reader reader = Resources.getResourceAsReader("mybatisConnectionToSqlite.xml");
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 			SqlSession session = sqlSessionFactory.openSession();
+			//SqlSession session = dbConnectionFactory.sessionProvider();
 			ImsMapper mapper = session.getMapper(ImsMapper.class);
 			List<UserDetails> userDetailList = mapper.getuserDetails(userDetails.getId(),userDetails.getPassword());
 			if (userDetailList.size() > 0) {
@@ -48,7 +49,7 @@ public class UserService {
 			} else {
 				json = new Gson().toJson("INVALID ID....CAN'T LOGIN");
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		if(valid){

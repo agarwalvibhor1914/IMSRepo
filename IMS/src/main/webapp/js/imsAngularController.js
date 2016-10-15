@@ -16,12 +16,30 @@ app.config(function($routeProvider) {
 
 });
 
+app.service('loginService', function() {
+	  var userDetails = this;
+
+	  var addProduct = function(newObj) {
+	      productList.push(newObj);
+	  };
+
+	  var getProducts = function(){
+	      return productList;
+	  };
+
+	  return {
+	    addProduct: addProduct,
+	    getProducts: getProducts
+	  };
+
+	});
+
 app.controller('loginController', function($scope, $http, $location) {
 	$scope.getDataFromServer = function() {
 		$scope.id = {};
 		$http({
 			method : 'POST',
-			url : 'rest/userService/varify',
+			url : 'api/userService/varify',
 			headers : {
 				'Content-Type' : 'application/json'
 			},
