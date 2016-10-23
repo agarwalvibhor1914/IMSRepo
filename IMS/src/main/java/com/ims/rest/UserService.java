@@ -3,21 +3,19 @@
  */
 package com.ims.rest;
 
-import java.io.Reader;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.google.gson.Gson;
+import com.ims.database.mybatis.DatabaseConnectionFactory;
 import com.ims.database.mybatis.ImsMapper;
 import com.ims.model.UserDetails;
 
@@ -28,6 +26,8 @@ import com.ims.model.UserDetails;
 @Path("/userService")
 public class UserService {
 
+	@Inject
+	DatabaseConnectionFactory dbConnectionFactory;
 
 	@POST
 	@Path("/varify")
@@ -37,10 +37,10 @@ public class UserService {
 		String json = "";
 		boolean valid=false;
 		try {
-			Reader reader = Resources.getResourceAsReader("mybatisConnectionToSqlite.xml");
+			/*Reader reader = Resources.getResourceAsReader("mybatisConnectionToSqlite.xml");
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-			SqlSession session = sqlSessionFactory.openSession();
-			//SqlSession session = dbConnectionFactory.sessionProvider();
+			SqlSession session = sqlSessionFactory.openSession();*/
+			SqlSession session = dbConnectionFactory.sessionProvider();
 			ImsMapper mapper = session.getMapper(ImsMapper.class);
 			List<UserDetails> userDetailList = mapper.getuserDetails(userDetails.getId(),userDetails.getPassword());
 			if (userDetailList.size() > 0) {
