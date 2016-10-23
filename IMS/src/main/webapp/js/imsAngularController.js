@@ -16,49 +16,39 @@ app.config(function($routeProvider) {
 
 });
 
-app.service('loginService', function() {
-	  var userDetails = this;
-
-	  var addProduct = function(newObj) {
-	      productList.push(newObj);
+app.service('loginService', function($http) {
+	var personDetails;
+	  this.varifyUser = function varifyUser(loginInfo) {
+		  return $http({
+				method : 'POST',
+				url : 'api/userService/varify',
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				data : loginInfo
+			});
 	  };
+	  this.getPersonDetails = function () {                
+          return this.personDetails;
+       }
+});
 
-	  var getProducts = function(){
-	      return productList;
-	  };
-
-	  return {
-	    addProduct: addProduct,
-	    getProducts: getProducts
-	  };
-
-	});
-
-app.controller('loginController', function($scope, $http, $location) {
+app.controller('loginController', function($scope, $http, $location, loginService) {
+	var person;
 	$scope.getDataFromServer = function() {
-		$scope.id = {};
-		$http({
-			method : 'POST',
-			url : 'api/userService/varify',
-			headers : {
-				'Content-Type' : 'application/json'
-			},
-			data : $scope.userDetails
-		}).success(function(data, status, headers, config) {
-			$scope.person = data;
-			$scope.error=null;
-			$location.path('/home');			
-		}).error(function(data, status, headers, config) {
-			$scope.person = null;
-			$scope.error = data;
-		});
-
+		loginService.varifyUser($scope.userDetails).success(function(user) {
+			$scope.person = user;
+			loginService.personDetails=user;
+			$location.path('/home');
+			});
 	};
 });
 
 
 
-app.controller('homeController', function($scope) {
-	$scope=data;
+app.controller('homeController', function($scope,loginService) {
+	$scope.init = function (){
+		$scope.person= loginService.getPersonDetails();
+	};
 });
 
