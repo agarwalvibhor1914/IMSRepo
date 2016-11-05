@@ -1,0 +1,15 @@
+<div class="form-group">
+  <label for="id">Enter Your ID:</label>
+  <input type="text" class="form-control" id="id" ng-model="userDetails.id" />
+</div>
+<div class="form-group">
+  <label for="password">Enter Your Password:</label>
+  <input type="password" id="password" class="form-control" ng-model="userDetails.password">
+</div>
+<button class="btn btn-default" ng-click="getDataFromServer()">Fetch data from Server</button>
+
+<div ng-show="error">
+	<p>Error :{{person}}</p>
+</div>
+<br />
+</div>

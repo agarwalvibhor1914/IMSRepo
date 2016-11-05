@@ -1,10 +1,10 @@
 <body>
 	<div id="header">
-		<h1 align="center" style="background-color: red">LOGIN</h1>
+		<jsp:include page="/parts/home/menu.html"></jsp:include>
 	</div>
-	<div id="content">
+	<div class="container">
 		<div ng-view></div>
-		
+
 	</div>
 	<div id="footer"></div>
 </body>
