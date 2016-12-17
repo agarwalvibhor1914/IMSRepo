@@ -1,22 +1,33 @@
 
-var app = angular.module('myApp', ['ngRoute']);
+var app = angular.module('myApp', ['ui.router']);
 
-app.config(function($routeProvider) {
-	$routeProvider
+app.config(function($stateProvider, $urlRouterProvider) {
 	
-	.when("/login", {
-		templateUrl : "parts/home/login.html",
-		controller  : "loginController"
-	})
+	$urlRouterProvider.otherwise('/');
 	
-	.when("/home", {
+	$stateProvider
+	
+	.state("home", {
+		url			: "/",
 		templateUrl : "parts/home/home.html",
 		controller  : "homeController"
 	})
 	
-	.when("/userDetails", {
+	.state("login", {
+		url			: "/login",
+		templateUrl : "parts/home/login.html",
+		controller  : "loginController"
+	})
+	
+	.state("userDetails", {
+		url			: "/userDetails",
 		templateUrl : "parts/home/userDetails.html",
 		controller  : "userDetailsController"
+	})
+	.state("productDetails", {
+		url			: "/productDetails",
+		templateUrl : "parts/product/productDetails.html",
+		controller  : "productDetailsController"
 	})
 
 });

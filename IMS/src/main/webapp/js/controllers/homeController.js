@@ -4,3 +4,8 @@ app.controller('homeController', function($scope,loginService) {
 	};
 });
 
+$(document).ready(function() {
+    $('#Carousel').carousel({
+        interval: 5000
+    })
+})

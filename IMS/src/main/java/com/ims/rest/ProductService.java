@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.ims.rest;
 
 import java.io.Reader;
@@ -19,22 +16,15 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.google.gson.Gson;
 import com.ims.database.mybatis.ImsMapper;
-import com.ims.model.UserDetails;
+import com.ims.model.ProductDetails;
 
-/**
- * @author Anshika
- *
- */
-@Path("/userService")
-public class UserService {
-
-	/*@Inject
-	DatabaseConnectionFactory dbConnectionFactory;*/
+@Path("/productService")
+public class ProductService {
 
 	@POST
-	@Path("/varify")
+	@Path("/productDetails")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response varifyUser(final UserDetails userDetails) {
+	public Response getproductDetails() {
 
 		String json = "";
 		boolean valid=false;
@@ -43,12 +33,12 @@ public class UserService {
 			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 			SqlSession session = sqlSessionFactory.openSession();
 			ImsMapper mapper = session.getMapper(ImsMapper.class);
-			List<UserDetails> userDetailList = mapper.getuserDetails(userDetails.getId(),userDetails.getPassword());
-			if (userDetailList.size() > 0) {
-				json = new Gson().toJson(userDetailList.get(0));
+			List<ProductDetails> productDetailList = mapper.getproductDetails();
+			if (productDetailList.size() > 0) {
+				json = new Gson().toJson(productDetailList.get(0));
 				valid =true;
 			} else {
-				json = new Gson().toJson("INVALID ID....CAN'T LOGIN");
+				json = new Gson().toJson("NO PRODUCTS FOUND");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,5 +51,4 @@ public class UserService {
 
 
 	}
-
 }

@@ -1,3 +1,23 @@
-.homeicon{
-	padding:-100%;
+.homeicon {
+	padding: -100%;
+}
+
+.menu{
+	font-size: large;
+	border-radius: 0px;
+}
+
+.tvback {
+	margin: 0;
+	background: url('/ims/images/TVOnBrickWall.jpg');
+	background-repeat: repeat-x;
+	background-size: 100% 100%;
+	height: 540px;
+    width: 50%;
+}
+
+.row img {
+    height: 63%;
+    margin-top: 10px;
+    width: 251px;
 }

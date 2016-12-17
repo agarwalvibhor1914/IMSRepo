@@ -15,4 +15,23 @@
    where id=#{id} and password=#{password}; 
 </select>
 
+
+<resultMap id ="productDetails" type = "com.ims.model.ProductDetails">
+   <result property = "id" column = "ID"/>
+   <result property = "brand" column = "make"/>
+   <result property = "model" column = "model"/>
+   <result property = "version" column = "version"/>
+    <result property = "active" column = "active"/>
+    <result property = "expirationDate" column = "expirationDate"/>
+    <result property = "netPrice" column = "netPrice"/>
+    <result property = "grossPrice" column = "grossPrice"/>
+    <result property = "taxPercentage" column = "taxPercentage"/>
+    <result property = "discountPercentage" column = "discountPercentage"/>
+    <result property = "accessories" column = "accessories"/>
+</resultMap>
+
+<select id = "getproductDetails" resultMap = "productDetails">
+   SELECT * FROM productDetails; 
+</select>
+
 </mapper>
